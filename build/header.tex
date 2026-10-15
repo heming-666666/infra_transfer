@@ -1,0 +1,17 @@
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft YaHei}[BoldFont=Microsoft YaHei Bold]
+\setCJKsansfont{Microsoft YaHei}
+\setCJKmonofont{Microsoft YaHei}
+\setmonofont{Consolas}[Scale=0.92]
+\xeCJKsetup{CJKspace=true}
+\usepackage{fvextra}
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\},fontsize=\small}
+\fvset{breaklines,breakanywhere,fontsize=\small}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\renewcommand{\arraystretch}{1.25}
+\let\origtableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{\origtableofcontents\clearpage}

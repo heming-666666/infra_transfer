@@ -1,0 +1,6 @@
+device=NVIDIA GeForce RTX 4070 Ti SUPER torch=2.5.1+cu121 transformers=5.13.0
+Loading weights:   0%|          | 0/35 [00:00<?, ?it/s]Loading weights: 100%|██████████| 35/35 [00:00<00:00, 34729.27it/s]
+[info] 无可用分词器（AssertionError），使用随机 token
+PASS pretrained logits match (rel max diff, torch.float32) | 4.769e-07
+PASS pretrained greedy == HF generate
+2/2 checks passed

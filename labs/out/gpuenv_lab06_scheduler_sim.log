@@ -1,0 +1,19 @@
+300 reqs, Poisson 6.0/s, KV=4096 blocks x 16 tok  (illustrative cost model, ms)
+policy           tok/s   TTFT50   TTFT99  TPOT50  TPOT99 preempt peakKV
+static             416    20025    41055    30.0    31.3       0   1543
+prefill_first      738       50      127    15.1    27.9       0   1247
+chunked            738       69      183    14.0    25.2       0   1174
+PASS static: every request gets exactly its tokens
+PASS static: KV capacity never exceeded | peak=1543/4096 preemptions=0
+PASS prefill_first: every request gets exactly its tokens
+PASS prefill_first: KV capacity never exceeded | peak=1247/4096 preemptions=0
+PASS chunked: every request gets exactly its tokens
+PASS chunked: KV capacity never exceeded | peak=1174/4096 preemptions=0
+PASS prefill_first@tight: every request gets exactly its tokens
+PASS prefill_first@tight: KV capacity never exceeded | peak=300/300 preemptions=58
+PASS chunked@tight: every request gets exactly its tokens
+PASS chunked@tight: KV capacity never exceeded | peak=300/300 preemptions=839
+PASS chunked: per-iteration tokens <= budget | max=512
+PASS tight KV forces preemption (recompute path exercised) | 897
+PASS continuous batching beats static in throughput | static=416, prefill_first=738, chunked=738
+13/13 checks passed

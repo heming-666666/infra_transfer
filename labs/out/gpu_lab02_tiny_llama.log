@@ -1,0 +1,7 @@
+device=cuda torch=2.5.1+cu121 params=3.03M
+PASS prefill+decode logits == full forward | max|diff|=6.258e-07
+PASS greedy with cache == without cache | tokens=[368, 110, 475, 354, 308, 489, 362, 217]...
+PASS KV bytes formula (torch.float32) | measured=163840 = 2*4*2*32*4B*40tok*2batch
+PASS KV bytes formula (torch.bfloat16) | measured=81920 = 2*4*2*32*2B*40tok*2batch
+prefill 256 tok: 6.69 ms (26.1 us/tok) | decode: 4.81 ms/tok | KV=576 KiB
+4/4 checks passed

@@ -1,0 +1,7 @@
+device=cpu torch=2.13.0+cpu params=3.03M
+PASS prefill+decode logits == full forward | max|diff|=1.431e-06
+PASS greedy with cache == without cache | tokens=[180, 454, 377, 208, 79, 426, 287, 169]...
+PASS KV bytes formula (torch.float32) | measured=163840 = 2*4*2*32*4B*40tok*2batch
+PASS KV bytes formula (torch.bfloat16) | measured=81920 = 2*4*2*32*2B*40tok*2batch
+prefill 256 tok: 8.58 ms (33.5 us/tok) | decode: 2.07 ms/tok | KV=576 KiB
+4/4 checks passed

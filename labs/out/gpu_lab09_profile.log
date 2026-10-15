@@ -1,0 +1,27 @@
+device=NVIDIA GeForce RTX 4070 Ti SUPER torch=2.5.1+cu121 dtype=float32 params=19.4M
+prefill 256 tok: 4.27 ms (16.7 us/tok) | decode: 5.16 ms/tok  [CUDA events]
+[warn] 本环境 torch.profiler 不支持 CUDA 活动（CUPTI 不可用），只记录 CPU 侧算子；GPU 时间以上面的 CUDA events 为准，或用 nsys
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                       Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                decode_step        29.36%      38.115ms        94.08%     122.126ms       7.633ms            16  
+                   aten::mm         9.19%      11.929ms         9.19%      11.929ms      24.197us           493  
+                  aten::mul         7.58%       9.839ms         7.58%       9.839ms      13.780us           714  
+                  aten::add         4.41%       5.724ms         4.41%       5.724ms      13.468us           425  
+                  aten::bmm         3.25%       4.221ms         3.25%       4.221ms      31.034us           136  
+                  aten::cat         3.24%       4.203ms         3.24%       4.203ms      15.921us           264  
+               aten::einsum         2.88%       3.744ms        10.04%      13.032ms      95.825us           136  
+            aten::unsqueeze         2.60%       3.369ms         3.06%       3.975ms       3.654us          1088  
+                aten::copy_         2.42%       3.139ms         2.42%       3.139ms      15.092us           208  
+                aten::slice         2.34%       3.034ms         2.84%       3.687ms       3.615us          1020  
+                  aten::pow         2.32%       3.013ms         2.37%       3.079ms      20.127us           153  
+               aten::matmul         2.26%       2.938ms        12.77%      16.572ms      33.614us           493  
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 129.808ms
+
+trace -> D:\Code\inference_infra_guide_20261014\labs\out\lab09_trace_cuda.json (7.3 MB)
+PASS trace has prefill/decode_step regions
+PASS top-ops table lists matmul ops | ['aten::mm', 'aten::bmm', 'aten::matmul']
+SKIP trace has CUDA kernel events | CUPTI 不可用，无法在本机验证
+PASS prefill per-token cost < decode per-token cost | 0.017 vs 5.164 ms
+3/3 checks passed

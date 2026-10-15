@@ -1,0 +1,6 @@
+device=cpu torch=2.5.1+cu121 transformers=5.13.0
+PASS llama: lab02 logits == HF logits (fp32) | max|diff|=0.000e+00
+PASS llama: lab02 greedy(KV cache) == HF generate
+PASS qwen3: lab02 logits == HF logits (fp32) | max|diff|=0.000e+00
+PASS qwen3: lab02 greedy(KV cache) == HF generate
+4/4 checks passed

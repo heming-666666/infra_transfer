@@ -1,0 +1,27 @@
+USDT:2026-10-15 10:37:18 24620:18764 C:\actions-runner\_work\pytorch\pytorch\third_party\kineto\libkineto\src\SyncActivityProfilerHandler.cpp:52] profiler_start
+USDT:2026-10-15 10:37:18 24620:18764 C:\actions-runner\_work\pytorch\pytorch\third_party\kineto\libkineto\src\SyncActivityProfilerHandler.cpp:59] profiler_stop
+device=cpu torch=2.13.0+cpu dtype=float32 params=19.4M
+prefill 256 tok: 28.50 ms (111.3 us/tok) | decode: 4.26 ms/tok  [perf_counter]
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                       Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                   aten::mm        26.35%      37.872ms        26.42%      37.981ms      77.040us           493  
+                decode_step        20.70%      29.749ms        75.57%     108.626ms       6.789ms            16  
+               aten::einsum         3.70%       5.315ms        10.84%      15.578ms     114.548us           136  
+                  aten::bmm         3.38%       4.860ms         3.41%       4.898ms      36.013us           136  
+                  aten::cat         2.96%       4.254ms         5.00%       7.193ms      27.246us           264  
+                  aten::mul         2.74%       3.943ms         3.23%       4.642ms       6.502us           714  
+                    prefill         2.58%       3.713ms        24.39%      35.062ms      35.062ms             1  
+            aten::unsqueeze         2.31%       3.318ms         2.76%       3.970ms       3.649us          1088  
+               aten::matmul         2.27%       3.257ms        30.17%      43.373ms      87.977us           493  
+                aten::copy_         2.07%       2.974ms         2.07%       2.974ms       5.110us           582  
+               aten::linear         1.75%       2.515ms        34.98%      50.282ms     101.992us           493  
+            aten::transpose         1.75%       2.515ms         2.04%       2.927ms       5.937us           493  
+---------------------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 143.746ms
+
+trace -> D:\Code\inference_infra_guide_20261014\labs\out\lab09_trace_cpu.json (9.3 MB)
+PASS trace has prefill/decode_step regions
+PASS top-ops table lists matmul ops | ['aten::mm', 'aten::bmm', 'aten::matmul', 'aten::linear']
+PASS prefill per-token cost < decode per-token cost | 0.111 vs 4.260 ms
+3/3 checks passed

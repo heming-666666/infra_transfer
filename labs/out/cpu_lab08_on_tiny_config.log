@@ -1,0 +1,11 @@
+params=0.001B  weights=0.00 GB (per GPU 0.00 GB, tp=2)
+KV/token=0.8 KiB (per GPU 0.4 KiB)  max KV tokens=23,435,718  -> ~91545 seqs @ 256 tok
+ridge point = 100.0 FLOP/byte
+prefill 128 tok: AI=136.4 (compute-bound) >= 0.001 ms
+decode @ ctx=256（上界：忽略通信与 kernel 效率）
+ batch       AI    bound   step ms>=     tok/s<=    per-seq
+     1      1.4   memory   0.0007824   1.278e+06  1.278e+06
+     8      5.9   memory    0.001471    5.44e+06    6.8e+05
+    32      9.0   memory     0.00383   8.355e+06  2.611e+05
+   128     10.4   memory     0.01327   9.648e+06  7.537e+04
+   256     10.7   memory     0.02585   9.903e+06  3.868e+04

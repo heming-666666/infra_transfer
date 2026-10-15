@@ -1,0 +1,17 @@
+learned 289 merges, vocab size 545
+longest tokens: ['词元延', '的请求', '键值缓存', '推理服务', '词元延迟']
+sample: '推理引擎用 KV cache 加速解码，鲲鹏🚀' -> 50 bytes, 26 tokens
+  '推': utf-8=e6 8e a8 -> tokens [366]
+  '鲲': utf-8=e9 b2 b2 -> tokens [233, 178, 178]
+  '🚀': utf-8=f0 9f 9a 80 -> tokens [240, 159, 154, 128]
+naive per-token : 推理|�|�|�|�|�|用| KV| cache| |加|�|�|�|解码|，|�|�|�|�|�|�|�|�|�|�
+streaming pieces: 推理||引|||擎|用| KV| cache| |加|||速|解码|，|||鲲|||鹏||||🚀|
+PASS merges learned >= 200 | 289 merges
+PASS round-trip decode(encode(s)) == s | 302 texts
+PASS streaming output == full decode
+PASS streaming emits no U+FFFD
+PASS byte-by-byte streaming ok
+PASS matches codecs incremental decoder
+PASS naive per-token decode DOES produce U+FFFD
+PASS unseen CJK char -> multiple tokens | encode('鲲')=[233, 178, 178]
+8/8 checks passed

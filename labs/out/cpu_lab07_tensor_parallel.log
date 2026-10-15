@@ -1,0 +1,15 @@
+[W1015 10:37:25.000000000 socket.cpp:764] [c10d] The client socket has failed to connect to [CHINAMI-RP79DNT]:29512 (system error: 10049 - 在其上下文中，该请求的地址无效。).
+[W1015 10:37:25.000000000 socket.cpp:764] [c10d] The client socket has failed to connect to [CHINAMI-RP79DNT]:29512 (system error: 10049 - 在其上下文中，该请求的地址无效。).
+backend=gloo world=2 device=cpu torch=2.13.0+cpu
+weights/rank: 491520 of 983040 params (0.500)
+comm per block forward: 2 all_reduce x 64x256 fp32 = 131072 bytes
+PASS TP block output == single-process reference | max|diff|=1.431e-06
+PASS all_reduce sum correct | 3.0
+       bytes   time(us)  algbw GB/s  busbw GB/s
+        4096      398.1       0.010       0.010
+       16384      413.4       0.040       0.040
+       65536      683.8       0.096       0.096
+      262144     1271.2       0.206       0.206
+     1048576    25317.7       0.041       0.041
+     4194304    43286.2       0.097       0.097
+    16777216   174101.1       0.096       0.096

@@ -1,0 +1,13 @@
+seq0: 6 tokens  block_table=[0, 1]  slots=[0, 1, 2, 3, 4, 5]
+seq1: 9 tokens  block_table=[2, 3, 4]  slots=[8, 9, 10, 11, 12, 13, 14, 15, 16]
+free blocks=11  cached full blocks=2
+PASS paged attention == contiguous attention | seq1 block_table=[0, 1, 6, 7, 12, 13]...
+PASS no leak after interleaved alloc/free
+PASS requests sharing system prompt hit 2 blocks | hit tokens=[0, 8, 8] pool.hits=4
+PASS shared blocks ref-counted
+PASS shared-block attention == contiguous + no leak
+PASS cache survives after requests finish | hit=8
+PASS LRU eviction under pressure | evictions=7 hit_after=0
+PASS block accounting never leaks | free=12/12
+PASS LRU evicts least-recently-freed block first | X blocks alive=[True, False] Y blocks alive=[True, True]
+9/9 checks passed

@@ -1,0 +1,13 @@
+PASS params | got=1352 want=1352
+PASS matmul params | got=1232 want=1232
+PASS KV bytes/token = 2*2*1*4*2 | got=32 want=32
+PASS max KV tokens = floor((0.5e9-2704)/32) | got=15624915 want=15624915
+PASS ridge = 100/2 | got=50 want=50
+PASS decode FLOPs | got=6208 want=6208
+PASS decode bytes | got=3344 want=3344
+PASS decode time = 3344/2e12 | got=1.672e-09 want=1.672e-09
+PASS prefill FLOPs | got=566400 want=566400
+PASS prefill bytes | got=5904 want=5904
+PASS decode B=2 is memory-bound
+PASS prefill 100 tok is compute-bound (AI 95.9 > 50)
+PASS tp=2 with 1 KV head replicates KV (per-GPU KV not halved)

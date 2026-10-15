@@ -1,0 +1,15 @@
+image (3, 300, 451) -> (3, 224, 320) -> patches (280, 768) -> merged (70, 768) -> visual tokens (70, 256)
+text+image sequence: 82 tokens (70 image placeholders)
+audio 30.0s @16kHz = 480000 samples -> log-mel (80, 3001) (center=False: 2998 frames) -> audio tokens (1501, 256); empty mel filters=0
+PASS patch count = (H/p)(W/p) | 280 patches
+PASS conv patch-embed == linear on patchified pixels | max|diff|=1.37e-06
+PASS 2x2 merge -> N/4 tokens | M=70
+PASS merged token k = concat of its 2x2 spatial neighbours
+PASS placeholders == visual tokens, seq len = text + M
+PASS visual embeddings scattered in order
+PASS text embeddings untouched
+PASS STFT frames (center=True) = 1 + N//hop | 3001
+PASS STFT frames (center=False) = 1 + (N-n_fft)//hop | 2998
+PASS audio tokens = floor((F+2-3)/s)+1 | 1501
+PASS 440 Hz sine peaks at bin round(440/(sr/n_fft)) = 11 | bin=11
+11/11 checks passed
